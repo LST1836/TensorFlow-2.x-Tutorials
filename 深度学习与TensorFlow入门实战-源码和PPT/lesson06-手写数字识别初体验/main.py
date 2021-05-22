@@ -26,11 +26,11 @@ model = keras.Sequential([
 optimizer = optimizers.SGD(learning_rate=0.001)
 
 
-def train_epoch(epoch):
+def train_epoch(epoch):  # epoch:整个database迭代一次
 
     # Step4.loop
-    for step, (x, y) in enumerate(train_dataset):
-
+    for step, (x, y) in enumerate(train_dataset):  # step:一个batch迭代一次
+    # 对每个batch都执行一次前向传播算预测值，算loss，算梯度，更新参数，即每个batch所使用的参数是不一样的
 
         with tf.GradientTape() as tape:
             # [b, 28, 28] => [b, 784]

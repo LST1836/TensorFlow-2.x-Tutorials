@@ -25,7 +25,7 @@ print('batch:', sample[0].shape, sample[1].shape)
 
 # [b, 784] => [b, 256] => [b, 128] => [b, 10]
 # [dim_in, dim_out], [dim_out]
-w1 = tf.Variable(tf.random.truncated_normal([784, 256], stddev=0.1))
+w1 = tf.Variable(tf.random.truncated_normal([784, 256], stddev=0.1))  # tf.Variable是tf.tensor的一种特殊类型，若不用tf.Variavle，后边求的grads将会是None
 b1 = tf.Variable(tf.zeros([256]))
 w2 = tf.Variable(tf.random.truncated_normal([256, 128], stddev=0.1))
 b2 = tf.Variable(tf.zeros([128]))
@@ -68,8 +68,8 @@ for epoch in range(10): # iterate db for 10
         # compute gradients
         grads = tape.gradient(loss, [w1, b1, w2, b2, w3, b3])
         # print(grads)
-        # w1 = w1 - lr * w1_grad
-        w1.assign_sub(lr * grads[0])
+        # w1 = w1 - lr * w1_grad      # 式中两个w1是两个不同的对象
+        w1.assign_sub(lr * grads[0])  # 原地更新，不改变w1类型
         b1.assign_sub(lr * grads[1])
         w2.assign_sub(lr * grads[2])
         b2.assign_sub(lr * grads[3])

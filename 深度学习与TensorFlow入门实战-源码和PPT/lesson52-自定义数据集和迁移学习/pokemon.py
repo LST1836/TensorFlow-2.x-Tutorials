@@ -112,7 +112,7 @@ def main():
 
 
 
-    images, labels, table = load_pokemon('pokemon', 'train')
+    images, labels, table = load_pokemon('E:/CNN_data/pokeman', 'train')
     print('images', len(images), images)
     print('labels', len(labels), labels)
     print(table)

@@ -16,7 +16,8 @@ class BasicBlock(layers.Layer):
         self.conv2 = layers.Conv2D(filter_num, (3, 3), strides=1, padding='same')
         self.bn2 = layers.BatchNormalization()
 
-        if stride != 1:
+        # shortcut
+        if stride != 1: # 若第一个卷积层stride不为1
             self.downsample = Sequential()
             self.downsample.add(layers.Conv2D(filter_num, (1, 1), strides=stride))
         else:
@@ -45,7 +46,7 @@ class BasicBlock(layers.Layer):
 class ResNet(keras.Model):
 
 
-    def __init__(self, layer_dims, num_classes=100): # [2, 2, 2, 2]
+    def __init__(self, layer_dims, num_classes=100): # [2, 2, 2, 2] 4个ResBlock,每个ResBlock包含2个BasicBlock
         super(ResNet, self).__init__()
 
         self.stem = Sequential([layers.Conv2D(64, (3, 3), strides=(1, 1)),

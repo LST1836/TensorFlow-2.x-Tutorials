@@ -1,9 +1,10 @@
+import  os
+# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 import  tensorflow as tf
 from    tensorflow import keras
 from    tensorflow.keras import datasets
-import  os
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # x: [60k, 28, 28], [10, 28, 28]
 # y: [60k], [10k]
